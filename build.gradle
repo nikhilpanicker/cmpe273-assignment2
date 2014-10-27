@@ -24,7 +24,7 @@ jar {
 }
 
 bootRepackage {
-    mainClass = 'hello.HelloConfig'
+    mainClass = 'hello.SampleWebApplication'
 }
 
 repositories {
