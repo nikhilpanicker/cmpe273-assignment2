@@ -285,7 +285,7 @@ class HelloWorldController {
 		conn.setRequestProperty("Accept", "application/json");
 		if (conn.getResponseCode() != 200) {
 		//throw new RuntimeException("Failed : HTTP error code : "+ conn.getResponseCode());
-		bankacc.customer_name = "Default Account Name"
+		bankacc.account_name = "Default Account Name"
 		}else{
 		var br:BufferedReader = new BufferedReader(new InputStreamReader(
 		(conn.getInputStream())));
@@ -300,15 +300,15 @@ class HelloWorldController {
 		var mapper:ObjectMapper = new ObjectMapper();
 		var routingDetails:routeDetails = mapper.readValue(output, classOf[routeDetails])
 		if(routingDetails.message .equals("OK")){
-		bankacc.customer_name = routingDetails.customer_name
+		bankacc.account_name = routingDetails.customer_name
 		}else{
-		bankacc.customer_name = "Default Bank Name"
+		bankacc.account_name = "Default Bank Name"
 		}
 		println("customer name "+bankacc.account_name);
 		}
 
 
-    bankCollection.insert(new BasicDBObject("_id",bankacc.bankId).append("account_name",bankacc.account_name).append("customer_name",bankacc.customer_name).append("account_number",bankacc.account_number).append("bankUserid",bankacc.bankUserid).append("routing_number",bankacc.routing_number));
+    bankCollection.insert(new BasicDBObject("_id",bankacc.bankId).append("account_name",bankacc.account_name).append("account_number",bankacc.account_number).append("bankUserid",bankacc.bankUserid).append("routing_number",bankacc.routing_number));
 
 	return bankacc
   }
@@ -331,7 +331,7 @@ class HelloWorldController {
       returnBankUser.account_name = obj.get("account_name").toString
       returnBankUser.account_number = obj.get("account_number").toString
       returnBankUser.routing_number = obj.get("routing_number").toString
-	  returnBankUser.customer_name = obj.get("customer_name").toString
+	  //returnBankUser.customer_name = obj.get("customer_name").toString
 	  
       returnBankUserList.add(returnBankUser)
     }
